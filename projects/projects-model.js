@@ -27,9 +27,10 @@ function addResource(resource) {
 }
 
 function getTasks(id) {
+  console.log(id)
   return db("tasks")
+   .where( {projects_id:id} )
     .join("projects", "projects.id", "tasks.projects_id")
-    // .where("tasks.projects_id" == id)
     .select("projects.name", "projects.description", "tasks.*")
 }
 

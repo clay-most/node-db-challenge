@@ -39,7 +39,8 @@ router.post("/:id/resources", async (req, res, next) => {
 });
 
 router.get("/:id/tasks", async (req, res, next) => {
-  const id = req.params;
+  const id = req.params.id;
+  console.log(id)
   try {
     res.json(await db.getTasks(id));
   } catch (err) {
@@ -48,9 +49,8 @@ router.get("/:id/tasks", async (req, res, next) => {
 });
 
 router.post("/:id/tasks", async (req, res, next) => {
-  const id = req.params;
   try {
-    await db.addTask(req.body, id);
+    await db.addTask(req.body);
     res.json(req.body);
   } catch (err) {
     next(err);
